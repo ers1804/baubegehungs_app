@@ -1,8 +1,7 @@
-const CACHE_NAME = 'siteaudit-v9';
+const CACHE_NAME = 'siteaudit-v10';
 
-// Explicitly cache both the directory root and index.html
+// We cache specific file names to avoid ambiguity with directory paths
 const ASSETS_TO_CACHE = [
-  './',
   'index.html',
   'manifest.json',
   'https://cdn.tailwindcss.com',
@@ -13,10 +12,10 @@ self.addEventListener('install', (event) => {
   self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      // Use a more resilient way to add all assets
+      // Adding assets one by one to ensure failure of one doesn't break the whole cache
       return Promise.all(
         ASSETS_TO_CACHE.map(url => {
-          return cache.add(url).catch(err => console.warn(`Failed to cache ${url}:`, err));
+          return cache.add(url).catch(err => console.warn(`[SW] Failed to cache ${url}:`, err));
         })
       );
     })
@@ -39,31 +38,47 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
-  const isSameOrigin = url.origin === self.location.origin;
+  
+  // 1. Handle Navigation Requests (The "App Shell" Pattern)
+  // This is the primary fix for 404s on launch. Any URL navigation within 
+  // our scope will serve the index.html from cache.
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      caches.match('index.html').then((response) => {
+        return response || fetch(event.request).catch(() => {
+          // Fallback if network and cache both fail
+          console.error('[SW] Navigation fetch failed');
+        });
+      })
+    );
+    return;
+  }
+
+  // 2. Handle Static Assets (Images, Scripts, CSS)
   const isCdn = url.hostname === 'cdn.tailwindcss.com' || url.hostname === 'cdnjs.cloudflare.com';
+  const isSameOrigin = url.origin === self.location.origin;
 
   if (isSameOrigin || isCdn) {
     event.respondWith(
-      caches.match(event.request).then((response) => {
-        if (response) {
-          return response;
+      caches.match(event.request).then((cachedResponse) => {
+        if (cachedResponse) {
+          return cachedResponse;
         }
 
         return fetch(event.request).then((networkResponse) => {
-          // Cache successful responses for assets
-          if (networkResponse && networkResponse.status === 200) {
-            const responseToCache = networkResponse.clone();
-            caches.open(CACHE_NAME).then((cache) => {
-              cache.put(event.request, responseToCache);
-            });
+          // Don't cache non-successful or non-basic responses (except CDNs)
+          if (!networkResponse || networkResponse.status !== 200) {
+            return networkResponse;
           }
+
+          const responseToCache = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseToCache);
+          });
+
           return networkResponse;
         }).catch(() => {
-          // If network fails and it's a navigation request, 
-          // return the cached index.html or root
-          if (event.request.mode === 'navigate') {
-            return caches.match('index.html') || caches.match('./');
-          }
+          // Silent fail for non-navigation assets
         });
       })
     );

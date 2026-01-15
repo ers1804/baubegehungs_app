@@ -52,9 +52,8 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        // Using './sw.js' with a simple dot scope is the most robust 
-        // way to handle subfolder hosting on Android Chrome.
-        navigator.serviceWorker.register('./sw.js', { scope: '.' })
+        // Register sw.js relative to index.html
+        navigator.serviceWorker.register('sw.js', { scope: './' })
           .then(reg => {
             console.log('SW Registered successfully with scope:', reg.scope);
           })
