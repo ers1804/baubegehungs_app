@@ -1,6 +1,8 @@
 
-const CACHE_NAME = 'siteaudit-v2';
-const BASE_PATH = '/site-audit-pro/';
+const CACHE_NAME = 'siteaudit-v3';
+// Get the current path (e.g., /site-audit-pro/)
+const BASE_PATH = self.location.pathname.replace('sw.js', '');
+
 const ASSETS_TO_CACHE = [
   BASE_PATH,
   BASE_PATH + 'index.html',
@@ -32,12 +34,13 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
   
-  // Only intercept requests that are within our app's scope
+  // Only intercept requests within our folder scope
   if (url.pathname.startsWith(BASE_PATH)) {
     event.respondWith(
       caches.match(event.request).then((response) => {
+        // Return cache or fetch from network
         return response || fetch(event.request).catch(() => {
-          // Fallback to index.html for navigation requests (SPA support)
+          // SPA fallback to index.html for navigation
           if (event.request.mode === 'navigate') {
             return caches.match(BASE_PATH + 'index.html');
           }
