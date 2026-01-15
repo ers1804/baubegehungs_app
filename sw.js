@@ -2,8 +2,9 @@ const CACHE_NAME = 'siteaudit-v12';
 
 // Cache essential assets only. index.html is our App Shell.
 const ASSETS_TO_CACHE = [
-  'index.html',
-  'manifest.json',
+  '/site-audit-pro/',
+  '/site-audit-pro/index.html',
+  '/site-audit-pro/manifest.json',
   'https://cdn.tailwindcss.com',
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
 ];
@@ -40,8 +41,8 @@ self.addEventListener('fetch', (event) => {
   // This ensures that the PWA always boots from the cached shell regardless of deep links or trailing slashes.
   if (event.request.mode === 'navigate') {
     event.respondWith(
-      caches.match('index.html').then((response) => {
-        return response || fetch(event.request);
+      caches.match('/site-audit-pro/').then((response) => {
+        return response || caches.match('/site-audit-pro/index.html').then(r => r || fetch(event.request));
       }).catch(() => {
         return fetch(event.request);
       })
