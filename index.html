@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>SiteAudit Pro - Construction Report Generator</title>
-  <link rel="manifest" href="./manifest.json">
+  <link rel="manifest" href="/site-audit-pro/manifest.json">
   <meta name="theme-color" content="#0f172a">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -44,12 +44,13 @@
 <body class="bg-gray-50 text-gray-900 overflow-x-hidden">
   <div id="root"></div>
   
-  <script type="module" src="./index.tsx"></script>
+  <script type="module" src="/site-audit-pro/index.tsx"></script>
 
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js')
+        // Explicitly register the SW with the subfolder path
+        navigator.serviceWorker.register('/site-audit-pro/sw.js', { scope: '/site-audit-pro/' })
           .then(reg => console.log('SW Registered', reg))
           .catch(err => console.error('SW Registration Failed', err));
       });
