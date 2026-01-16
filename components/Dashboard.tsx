@@ -64,7 +64,7 @@ const Dashboard: React.FC<DashboardProps> = ({
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
         <div>
           <h2 className="text-2xl font-bold text-slate-800">Site Management</h2>
-          <p className="text-slate-500">Overview of reports and library modules</p>
+          <p className="text-slate-500">Übersicht der Berichte und Textmodule</p>
         </div>
         <div className="flex gap-2 w-full sm:w-auto">
           {!isCloudConnected ? (
@@ -86,25 +86,25 @@ const Dashboard: React.FC<DashboardProps> = ({
             className="flex-1 sm:flex-none bg-white border border-gray-200 text-slate-700 px-4 py-2 rounded-xl text-sm font-medium hover:bg-gray-50 transition shadow-sm flex items-center justify-center gap-2"
           >
             <i className="fas fa-book text-blue-500"></i>
-            Modules
+            Module
           </button>
         </div>
       </div>
 
       <section>
-        <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Recent Reports</h3>
+        <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Aktuelle Berichte</h3>
         {reports.length === 0 ? (
           <div className="bg-white border-2 border-dashed border-gray-200 rounded-2xl p-12 text-center">
             <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <i className="fas fa-clipboard-list text-gray-400 text-2xl"></i>
             </div>
-            <h3 className="text-lg font-medium text-slate-700">No reports yet</h3>
-            <p className="text-slate-500 mb-6">Create your first site visit report to get started.</p>
+            <h3 className="text-lg font-medium text-slate-700">Keine Berichte vorhanden</h3>
+            <p className="text-slate-500 mb-6">Erstelle deinen ersten Bericht, um zu beginnen.</p>
             <button 
               onClick={onCreateNew}
               className="bg-slate-900 text-white px-6 py-2 rounded-xl hover:bg-slate-800 transition shadow-md"
             >
-              Create New Report
+              Neuen Bericht erstellen
             </button>
           </div>
         ) : (
@@ -161,8 +161,8 @@ const Dashboard: React.FC<DashboardProps> = ({
           <div className="bg-white rounded-3xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl">
             <div className="p-6 border-b flex justify-between items-center bg-gray-50">
               <div>
-                <h3 className="text-xl font-bold text-slate-800">Library Modules</h3>
-                <p className="text-sm text-gray-500">Edit or add standardized text modules</p>
+                <h3 className="text-xl font-bold text-slate-800">Textmodule</h3>
+                <p className="text-sm text-gray-500">Bearbeite oder füge standardisierte Textmodule hinzu</p>
               </div>
               <button onClick={() => { setShowModuleModal(false); handleCancelEdit(); }} className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-200 transition">
                 <i className="fas fa-times text-gray-500"></i>
@@ -173,17 +173,17 @@ const Dashboard: React.FC<DashboardProps> = ({
               {/* Add/Edit Module Form */}
               <div className={`${editingModuleId ? 'bg-amber-50 border-amber-200' : 'bg-blue-50/50 border-blue-100'} border p-4 rounded-2xl space-y-3 transition-colors`}>
                 <h4 className={`text-xs font-bold uppercase tracking-widest ${editingModuleId ? 'text-amber-600' : 'text-blue-600'}`}>
-                  {editingModuleId ? 'Edit Module' : 'Add New Module'}
+                  {editingModuleId ? 'Module bearbeiten' : 'Neues Modul hinzufügen'}
                 </h4>
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
                   <input 
-                    placeholder="Category"
+                    placeholder="Kategorie"
                     className="md:col-span-1 p-2.5 bg-white text-slate-900 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 outline-none"
                     value={newCat}
                     onChange={e => setNewCat(e.target.value)}
                   />
                   <input 
-                    placeholder="Module text content..."
+                    placeholder="Modulinhalt..."
                     className="md:col-span-2 p-2.5 bg-white text-slate-900 border border-slate-200 rounded-xl text-sm focus:ring-2 focus:ring-blue-500 outline-none"
                     value={newContent}
                     onChange={e => setNewContent(e.target.value)}
@@ -193,7 +193,7 @@ const Dashboard: React.FC<DashboardProps> = ({
                       onClick={handleSubmitModule}
                       className={`flex-1 ${editingModuleId ? 'bg-amber-600 hover:bg-amber-700' : 'bg-blue-600 hover:bg-blue-700'} text-white rounded-xl py-2 px-4 transition font-semibold text-sm`}
                     >
-                      {editingModuleId ? 'Update' : 'Add'}
+                      {editingModuleId ? 'Update' : 'Hinzufügen'}
                     </button>
                     {editingModuleId && (
                       <button 
@@ -210,7 +210,7 @@ const Dashboard: React.FC<DashboardProps> = ({
               {/* Modules List */}
               <div className="space-y-3 pb-4">
                 {customModules.length === 0 ? (
-                  <p className="text-center py-10 text-gray-400 italic text-slate-500">No modules in your library.</p>
+                  <p className="text-center py-10 text-gray-400 italic text-slate-500">Keine Module vorhanden.</p>
                 ) : (
                   customModules.map(mod => (
                     <div key={mod.id} className="flex justify-between items-center p-4 bg-white border border-slate-100 rounded-2xl hover:border-blue-200 transition group shadow-sm">
