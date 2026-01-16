@@ -12,5 +12,5 @@ export const TEXT_MODULES: TextModule[] = [
   { category: 'Progress', content: 'Installation of window frames delayed due to late delivery. Schedule impact: 2 days.' },
 ];
 
-export const SEVERITIES = ['Low', 'Medium', 'High', 'Critical'] as const;
+export const SEVERITIES = ['Rot', 'Gruen'] as const;
 export const ACTION_STATUSES = ['laufend', 'sofort'] as const;

@@ -123,7 +123,7 @@ const Dashboard: React.FC<DashboardProps> = ({
                       <span className="text-xs text-gray-400 font-mono">#{report.projectNumber || 'UNSET'}</span>
                     </div>
                     <h3 className="text-lg font-semibold text-slate-800 group-hover:text-blue-600 transition">
-                      {report.projectName || 'Untitled Project'}
+                      {report.projectName || 'Unbenanntes Projekt'}
                     </h3>
                     <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-sm text-gray-500">
                       <span className="flex items-center gap-1.5">

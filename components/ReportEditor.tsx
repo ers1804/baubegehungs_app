@@ -206,13 +206,13 @@ const ReportEditor: React.FC<ReportEditorProps> = ({ report, customModules, onUp
       <div className="min-h-[60vh] pb-32">
         {activeTab === 'info' && (
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-4">
-            <h3 className="text-lg font-bold text-slate-800 border-b pb-2 mb-4">Project Details</h3>
+            <h3 className="text-lg font-bold text-slate-800 border-b pb-2 mb-4">Projekt Details</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-1"><label className="text-xs font-semibold text-gray-500 uppercase">Project Name</label><input type="text" value={report.projectName} onChange={(e) => updateField('projectName', e.target.value)} placeholder="e.g. Skyline Apartments" className="w-full p-2.5 bg-white text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" /></div>
+              <div className="space-y-1"><label className="text-xs font-semibold text-gray-500 uppercase">Projektname</label><input type="text" value={report.projectName} onChange={(e) => updateField('projectName', e.target.value)} placeholder="e.g. Skyline Apartments" className="w-full p-2.5 bg-white text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" /></div>
               
               <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-1"><label className="text-xs font-semibold text-gray-500 uppercase">Project No.</label><input type="text" value={report.projectNumber} onChange={(e) => updateField('projectNumber', e.target.value)} placeholder="e.g. PRJ-001" className="w-full p-2.5 bg-white text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" /></div>
-                <div className="space-y-1"><label className="text-xs font-semibold text-gray-500 uppercase">Report No.</label><input type="text" value={report.reportNumber} onChange={(e) => updateField('reportNumber', e.target.value)} placeholder="e.g. 01" className="w-full p-2.5 bg-white text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" /></div>
+                <div className="space-y-1"><label className="text-xs font-semibold text-gray-500 uppercase">Projektnummer</label><input type="text" value={report.projectNumber} onChange={(e) => updateField('projectNumber', e.target.value)} placeholder="e.g. PRJ-001" className="w-full p-2.5 bg-white text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" /></div>
+                <div className="space-y-1"><label className="text-xs font-semibold text-gray-500 uppercase">Berichtsnummer</label><input type="text" value={report.reportNumber} onChange={(e) => updateField('reportNumber', e.target.value)} placeholder="e.g. 01" className="w-full p-2.5 bg-white text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" /></div>
               </div>
               
               <div className="md:col-span-2 space-y-1">
@@ -239,11 +239,11 @@ const ReportEditor: React.FC<ReportEditorProps> = ({ report, customModules, onUp
                 />
               </div>
 
-              <div className="space-y-1"><label className="text-xs font-semibold text-gray-500 uppercase">Visit Date</label><input type="date" value={report.visitDate} onChange={(e) => updateField('visitDate', e.target.value)} className="w-full p-2.5 bg-white text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" /></div>
-              <div className="space-y-1"><label className="text-xs font-semibold text-gray-500 uppercase">Visit Time</label><input type="time" value={report.visitTime} onChange={(e) => updateField('visitTime', e.target.value)} className="w-full p-2.5 bg-white text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" /></div>
+              <div className="space-y-1"><label className="text-xs font-semibold text-gray-500 uppercase">Datum</label><input type="date" value={report.visitDate} onChange={(e) => updateField('visitDate', e.target.value)} className="w-full p-2.5 bg-white text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" /></div>
+              <div className="space-y-1"><label className="text-xs font-semibold text-gray-500 uppercase">Zeit</label><input type="time" value={report.visitTime} onChange={(e) => updateField('visitTime', e.target.value)} className="w-full p-2.5 bg-white text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" /></div>
               
-              <div className="space-y-1"><label className="text-xs font-semibold text-gray-500 uppercase">Author</label><input type="text" value={report.author} onChange={(e) => updateField('author', e.target.value)} placeholder="Name of Author" className="w-full p-2.5 bg-white text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" /></div>
-              <div className="space-y-1"><label className="text-xs font-semibold text-gray-500 uppercase">Inspector</label><input type="text" value={report.inspector} onChange={(e) => updateField('inspector', e.target.value)} placeholder="Name of Inspector" className="w-full p-2.5 bg-white text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" /></div>
+              <div className="space-y-1"><label className="text-xs font-semibold text-gray-500 uppercase">Verfasser</label><input type="text" value={report.author} onChange={(e) => updateField('author', e.target.value)} placeholder="Name of Author" className="w-full p-2.5 bg-white text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" /></div>
+              <div className="space-y-1"><label className="text-xs font-semibold text-gray-500 uppercase">Leiter</label><input type="text" value={report.inspector} onChange={(e) => updateField('inspector', e.target.value)} placeholder="Name of Inspector" className="w-full p-2.5 bg-white text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" /></div>
             </div>
           </div>
         )}
@@ -252,8 +252,8 @@ const ReportEditor: React.FC<ReportEditorProps> = ({ report, customModules, onUp
           <div className="space-y-6">
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
               <div className="flex justify-between items-center mb-4">
-                <h3 className="text-lg font-bold text-slate-800">Distribution & Attendance List</h3>
-                <button onClick={() => addItem<DistributionRecipient>('distributionList', { id: crypto.randomUUID(), name: '', role: '', company: '', email: '', isPresent: false })} className="text-sm bg-blue-50 text-blue-600 px-3 py-1.5 rounded-lg hover:bg-blue-100 transition"><i className="fas fa-plus mr-1"></i> Add Recipient</button>
+                <h3 className="text-lg font-bold text-slate-800">Verteiler- & Anwesenheitsliste</h3>
+                <button onClick={() => addItem<DistributionRecipient>('distributionList', { id: crypto.randomUUID(), name: '', role: '', company: '', email: '', isPresent: false })} className="text-sm bg-blue-50 text-blue-600 px-3 py-1.5 rounded-lg hover:bg-blue-100 transition"><i className="fas fa-plus mr-1"></i> Empfänger hinzufügen</button>
               </div>
               <div className="space-y-3">
                 {report.distributionList.map((person, idx) => (
@@ -279,7 +279,7 @@ const ReportEditor: React.FC<ReportEditorProps> = ({ report, customModules, onUp
                   </div>
                 ))}
                 {report.distributionList.length === 0 && (
-                  <div className="text-center py-8 text-gray-400 italic text-sm">No recipients added yet.</div>
+                  <div className="text-center py-8 text-gray-400 italic text-sm">Keine Empfänger vorhanden.</div>
                 )}
               </div>
             </div>
@@ -290,7 +290,7 @@ const ReportEditor: React.FC<ReportEditorProps> = ({ report, customModules, onUp
           <div className="space-y-6">
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
               <div className="flex flex-wrap gap-3 justify-between items-center mb-6">
-                <h3 className="text-lg font-bold text-slate-800">Site Deviations</h3>
+                <h3 className="text-lg font-bold text-slate-800">Beobachtungen</h3>
                 <div className="flex gap-2">
                   <button onClick={addGeneralDeviation} className="bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition shadow-md flex items-center gap-2">
                     <i className="fas fa-plus"></i> <span>Add Observation</span>
@@ -330,7 +330,7 @@ const ReportEditor: React.FC<ReportEditorProps> = ({ report, customModules, onUp
                       ) : (
                         <div className="w-full h-48 bg-slate-50 rounded-xl border border-dashed border-slate-200 flex flex-col items-center justify-center text-slate-400">
                           <i className="fas fa-align-left text-3xl mb-2 text-slate-300"></i>
-                          <span className="text-xs font-medium">Text Observation</span>
+                          <span className="text-xs font-medium">Beobachtung ohne Bild</span>
                         </div>
                       )}
                     </div>
@@ -338,10 +338,10 @@ const ReportEditor: React.FC<ReportEditorProps> = ({ report, customModules, onUp
                     <div className="md:col-span-8 space-y-4">
                       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
                         <div className="space-y-1">
-                          <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Severity</label>
+                          <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Schweregrad</label>
                           <select 
                             className={`w-full text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-200 focus:ring-2 ${
-                              deviation.severity === 'Critical' ? 'bg-red-50 text-red-700' : deviation.severity === 'High' ? 'bg-orange-50 text-orange-700' : 'bg-green-50 text-green-700'
+                              deviation.severity === 'Rot' ? 'bg-red-50 text-red-700' : deviation.severity === 'Gruen' ? 'bg-green-50 text-green-700' : 'bg-green-50 text-green-700'
                             }`}
                             value={deviation.severity}
                             onChange={(e) => onUpdateDeviation(deviation.id, { severity: e.target.value as any })}
@@ -360,9 +360,9 @@ const ReportEditor: React.FC<ReportEditorProps> = ({ report, customModules, onUp
                           </select>
                         </div>
                         <div className="col-span-2 space-y-1">
-                          <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Responsible</label>
+                          <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Verantwortlich</label>
                           <input 
-                            placeholder="Responsible Person/Company"
+                            placeholder="Verantwortliche Person/Firma"
                             className="w-full text-xs bg-white text-slate-900 border border-slate-200 px-3 py-1.5 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                             value={deviation.responsible || ''}
                             onChange={(e) => onUpdateDeviation(deviation.id, { responsible: e.target.value })}
@@ -372,7 +372,7 @@ const ReportEditor: React.FC<ReportEditorProps> = ({ report, customModules, onUp
 
                       <div className="space-y-2">
                         <div className="flex justify-between items-center">
-                          <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">Observation Details</label>
+                          <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">Beobachtungsdetails</label>
                           <div className="relative overflow-visible">
                             <button 
                               onClick={(e) => {
@@ -389,11 +389,11 @@ const ReportEditor: React.FC<ReportEditorProps> = ({ report, customModules, onUp
                                 onClick={(e) => e.stopPropagation()}
                               >
                                 <div className="sticky top-0 bg-white p-2 border-b mb-2 flex justify-between items-center z-10">
-                                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Library Modules</span>
+                                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Textmodule</span>
                                   <button onClick={() => setOpenDropdownId(null)} className="text-slate-400 p-1 hover:text-slate-600"><i className="fas fa-times"></i></button>
                                 </div>
                                 {allModules.length === 0 ? (
-                                  <div className="p-6 text-center text-xs text-gray-400 italic">No modules available</div>
+                                  <div className="p-6 text-center text-xs text-gray-400 italic">Keine Module vorhanden</div>
                                 ) : (
                                   allModules.map((m, mIdx) => (
                                     <button 
