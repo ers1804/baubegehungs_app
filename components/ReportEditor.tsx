@@ -120,7 +120,7 @@ const ReportEditor: React.FC<ReportEditorProps> = ({ report, customModules, onUp
           id: crypto.randomUUID(),
           photoUrl: compressedBase64,
           textModule: '',
-          severity: 'Medium',
+          severity: 'Rot',
           actionStatus: 'laufend',
           responsible: ''
         };
@@ -135,7 +135,7 @@ const ReportEditor: React.FC<ReportEditorProps> = ({ report, customModules, onUp
     const newDeviation: Deviation = {
       id: crypto.randomUUID(),
       textModule: '',
-      severity: 'Medium',
+      severity: 'Rot',
       actionStatus: 'laufend',
       responsible: ''
     };
