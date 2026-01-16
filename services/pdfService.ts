@@ -81,7 +81,7 @@ export const generatePDF = async (report: SiteReport) => {
 
       // Severity Header Bar
       const severityColors: Record<string, [number, number, number]> = {
-        'Low': [34, 197, 94], 'Medium': [234, 179, 8], 'High': [249, 115, 22], 'Critical': [239, 68, 68]
+        'Gruen': [34, 197, 94], 'Rot': [239, 68, 68]
       };
       const color = severityColors[dev.severity] || [100, 100, 100];
       doc.setFillColor(color[0], color[1], color[2]);
