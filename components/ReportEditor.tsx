@@ -120,7 +120,7 @@ const ReportEditor: React.FC<ReportEditorProps> = ({ report, customModules, onUp
           id: crypto.randomUUID(),
           photoUrl: compressedBase64,
           textModule: '',
-          severity: 'Rot',
+          severity: 'Gruen',
           actionStatus: 'laufend',
           responsible: ''
         };
@@ -135,7 +135,7 @@ const ReportEditor: React.FC<ReportEditorProps> = ({ report, customModules, onUp
     const newDeviation: Deviation = {
       id: crypto.randomUUID(),
       textModule: '',
-      severity: 'Rot',
+      severity: 'Gruen',
       actionStatus: 'laufend',
       responsible: ''
     };
@@ -293,10 +293,10 @@ const ReportEditor: React.FC<ReportEditorProps> = ({ report, customModules, onUp
                 <h3 className="text-lg font-bold text-slate-800">Beobachtungen</h3>
                 <div className="flex gap-2">
                   <button onClick={addGeneralDeviation} className="bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition shadow-md flex items-center gap-2">
-                    <i className="fas fa-plus"></i> <span>Add Observation</span>
+                    <i className="fas fa-plus"></i> <span>Beobachtung hinzufügen</span>
                   </button>
                   <label className="cursor-pointer bg-slate-900 text-white px-4 py-2 rounded-xl hover:bg-slate-800 transition shadow-md flex items-center gap-2">
-                    <i className="fas fa-camera"></i> <span>Add Photo</span>
+                    <i className="fas fa-camera"></i> <span>Foto hinzufügen</span>
                     <input type="file" accept="image/*" className="hidden" onChange={handlePhotoUpload} />
                   </label>
                 </div>
@@ -381,7 +381,7 @@ const ReportEditor: React.FC<ReportEditorProps> = ({ report, customModules, onUp
                               }}
                               className="text-[10px] bg-blue-50 text-blue-600 px-3 py-1 rounded border border-blue-200 hover:bg-blue-100 transition shadow-sm font-semibold flex items-center gap-1"
                             >
-                              <i className="fas fa-list-ul"></i> Select Module <i className="fas fa-chevron-down"></i>
+                              <i className="fas fa-list-ul"></i> Textmodul <i className="fas fa-chevron-down"></i>
                             </button>
                             {openDropdownId === deviation.id && (
                               <div 
