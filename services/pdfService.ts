@@ -66,32 +66,43 @@ export const generatePDF = async (report: SiteReport) => {
   doc.setFillColor(31, 41, 55); 
   doc.rect(0, 0, pageWidth, 40, 'F');
   doc.setTextColor(255, 255, 255);
-  centerText('SITE VISIT AUDIT REPORT', 18, 22, 'bold');
-  centerText(report.projectName || 'Unnamed Project', 28, 14, 'normal');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(22);
+  doc.setFont('helvetica', 'bold');
+  doc.text('Begehungsprotokoll', margin, 18);
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'normal');
+  doc.text('gem. BauKG, BGBI. I Nr. 37/1999', margin, 28);
+  // centerText(report.projectName || 'Unnamed Project', 28, 14, 'normal');
   
   doc.setTextColor(0, 0, 0);
   doc.setFontSize(10);
-  doc.text(`Project No: ${report.projectNumber || 'N/A'}`, margin, 50);
+  doc.setFont('helvetica', 'bold');
   doc.text(`Report No: ${report.reportNumber || 'N/A'}`, 60, 50);
-  doc.text(`Date: ${report.visitDate}`, margin, 56);
-  doc.text(`Time: ${report.visitTime || 'N/A'}`, 60, 56);
-  doc.text(`Location: ${report.location || 'N/A'}`, margin, 62);
-  doc.text(`Author: ${report.author || 'N/A'}`, margin, 68);
-  doc.text(`Inspector: ${report.inspector || 'N/A'}`, 60, 68);
+  doc.setFontSize(12);
+  doc.setFont('helvetica', 'bold');
+  doc.text(`Bauvorhaben: ${report.projectName || 'N/A'}`, margin, 44);
+  doc.setFontSize(10);
+  doc.text(`Dok. Nr.: ${report.projectNumber || 'N/A'}`, margin, 50);
+  doc.text(`Datum: ${report.visitDate}`, margin, 56);
+  doc.text(`Zeit: ${report.visitTime || 'N/A'}`, 60, 56);
+  doc.text(`Ort: ${report.location || 'N/A'}`, margin, 62);
+  doc.text(`Verfasser: ${report.author || 'N/A'}`, margin, 68);
+  doc.text(`Leiter: ${report.inspector || 'N/A'}`, 60, 68);
 
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(11);
-  doc.text('DISTRIBUTION & ATTENDANCE LIST', margin, 80);
+  doc.text('Begehung im Sinne des BauKG', margin, 80);
   
   autoTable(doc, {
     startY: 85,
-    head: [['Name', 'Role', 'Company', 'Email', 'Present']],
+    head: [['Funktion', 'Name', 'Firma', 'Email', 'Anwesend']],
     body: report.distributionList.map(d => [
-      d.name, 
       d.role, 
+      d.name, 
       d.company, 
       d.email, 
-      d.isPresent ? '[X] Yes' : '[ ] No'
+      d.isPresent ? '[X] Ja' : '[ ] Nein'
     ]),
     theme: 'grid',
     headStyles: { fillColor: [31, 41, 55], textColor: [255, 255, 255] },
@@ -111,7 +122,7 @@ export const generatePDF = async (report: SiteReport) => {
     doc.addPage();
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(16);
-    doc.text('SITE DEVIATIONS & OBSERVATIONS', margin, 20);
+    doc.text('Begehung', margin, 20);
     
     let currentY = 30;
     const lineHeight = 5.5;
@@ -140,7 +151,7 @@ export const generatePDF = async (report: SiteReport) => {
       doc.rect(margin, currentY, 180, 8, 'F');
       doc.setTextColor(255, 255, 255);
       doc.setFontSize(10);
-      doc.text(`ITEM ${i + 1} - ${dev.severity.toUpperCase()} SEVERITY`, margin + 5, currentY + 5.5);
+      doc.text(`Punkt ${i + 1} - ${dev.severity.toUpperCase()}`, margin + 5, currentY + 5.5);
       doc.setTextColor(0, 0, 0);
       currentY += 12;
 
@@ -160,7 +171,7 @@ export const generatePDF = async (report: SiteReport) => {
 
       // Observation Text
       doc.setFont('helvetica', 'bold');
-      doc.text('Observation:', textX, contentStartY + 5);
+      doc.text('Stichwort/Text:', textX, contentStartY + 5);
       doc.setFont('helvetica', 'normal');
       doc.text(splitText, textX, contentStartY + 11);
 
@@ -193,10 +204,10 @@ export const generatePDF = async (report: SiteReport) => {
     doc.setPage(i);
     doc.setFontSize(8);
     doc.setTextColor(150, 150, 150);
-    doc.text(`Page ${i} of ${pageCount}`, pageWidth - 30, pageHeight - 10);
-    doc.text(`Report Generated: ${new Date().toLocaleString()}`, margin, pageHeight - 10);
+    doc.text(`Seite ${i} von ${pageCount}`, pageWidth - 30, pageHeight - 10);
+    doc.text(`Bericht erstellt: ${new Date().toLocaleString()}`, margin, pageHeight - 10);
   }
 
-  const fileName = `SiteReport_${report.projectName.replace(/\s+/g, '_') || 'Draft'}_${report.visitDate}.pdf`;
+  const fileName = `${report.visitDate}_Begehung_${report.projectName.replace(/\s+/g, '_') || 'Draft'}.pdf`;
   doc.save(fileName);
 };
