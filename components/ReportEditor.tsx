@@ -209,11 +209,11 @@ const ReportEditor: React.FC<ReportEditorProps> = ({ report, customModules, onUp
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-4">
             <h3 className="text-lg font-bold text-slate-800 border-b pb-2 mb-4">Projekt Details</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-1"><label className="text-xs font-semibold text-gray-500 uppercase">Projektname</label><input type="text" value={report.projectName} onChange={(e) => updateField('projectName', e.target.value)} placeholder="e.g. Skyline Apartments" className="w-full p-2.5 bg-white text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" /></div>
+              <div className="space-y-1"><label className="text-xs font-semibold text-gray-500 uppercase">Bauvorhaben</label><input type="text" value={report.projectName} onChange={(e) => updateField('projectName', e.target.value)} placeholder="e.g. Skyline Apartments" className="w-full p-2.5 bg-white text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" /></div>
               
               <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-1"><label className="text-xs font-semibold text-gray-500 uppercase">Projektnummer</label><input type="text" value={report.projectNumber} onChange={(e) => updateField('projectNumber', e.target.value)} placeholder="e.g. PRJ-001" className="w-full p-2.5 bg-white text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" /></div>
-                <div className="space-y-1"><label className="text-xs font-semibold text-gray-500 uppercase">Berichtsnummer</label><input type="text" value={report.reportNumber} onChange={(e) => updateField('reportNumber', e.target.value)} placeholder="e.g. 01" className="w-full p-2.5 bg-white text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" /></div>
+                <div className="space-y-1"><label className="text-xs font-semibold text-gray-500 uppercase">Dok. Nr.</label><input type="text" value={report.projectNumber} onChange={(e) => updateField('projectNumber', e.target.value)} placeholder="e.g. PRJ-001" className="w-full p-2.5 bg-white text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" /></div>
+                <div className="space-y-1"><label className="text-xs font-semibold text-gray-500 uppercase">Protokoll lfd. Nr.</label><input type="text" value={report.reportNumber} onChange={(e) => updateField('reportNumber', e.target.value)} placeholder="e.g. 01" className="w-full p-2.5 bg-white text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition" /></div>
               </div>
               
               <div className="md:col-span-2 space-y-1">
@@ -225,9 +225,9 @@ const ReportEditor: React.FC<ReportEditorProps> = ({ report, customModules, onUp
                     className="text-[10px] font-bold text-blue-600 hover:text-blue-800 flex items-center gap-1 transition-colors"
                   >
                     {isLocating ? (
-                      <><i className="fas fa-circle-notch fa-spin"></i> Locating...</>
+                      <><i className="fas fa-circle-notch fa-spin"></i> Position wird ermittelt...</>
                     ) : (
-                      <><i className="fas fa-location-crosshairs"></i> Refresh Position</>
+                      <><i className="fas fa-location-crosshairs"></i> Position aktualisieren</>
                     )}
                   </button>
                 </div>
