@@ -52,7 +52,8 @@ const ReportEditor: React.FC<ReportEditorProps> = ({ report, customModules, onUp
           // Heuristic for "next city": try city, then town, then village, then suburb
           const city = address.city || address.town || address.village || address.suburb || address.municipality || 'Unknown Location';
           const road = address.road ? `${address.road}, ` : '';
-          updateField('location', `${road}${city}`);
+          const zipCode = address.postcode || '';
+          updateField('location', `${zipCode} ${city}`);
         } catch (error) {
           console.error("Geocoding failed", error);
           updateField('location', `Lat: ${latitude.toFixed(4)}, Lon: ${longitude.toFixed(4)}`);

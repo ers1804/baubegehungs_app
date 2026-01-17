@@ -93,6 +93,19 @@ export const generatePDF = async (report: SiteReport) => {
     });
   };
 
+  const drawHeaderLogo = (scale = 1) => {
+    if (!headerLogoDataUrl || !headerLogoSize) {
+      return;
+    }
+
+    const mmPerPx = 25.4 / 96;
+    const logoWidth = headerLogoSize.width * mmPerPx * scale;
+    const logoHeight = headerLogoSize.height * mmPerPx * scale;
+    const logoX = pageWidth - margin - logoWidth;
+    const logoY = 6;
+    doc.addImage(headerLogoDataUrl, 'PNG', logoX, logoY, logoWidth, logoHeight);
+  };
+
   // --- PAGE 1: TITLE & DISTRIBUTION ---
   doc.setFillColor(31, 41, 55); 
   doc.rect(0, 0, pageWidth, 40, 'F');
@@ -104,14 +117,7 @@ export const generatePDF = async (report: SiteReport) => {
   doc.setFontSize(14);
   doc.setFont('helvetica', 'normal');
   doc.text('gem. BauKG, BGBI. I Nr. 37/1999', margin, 28);
-  if (headerLogoDataUrl && headerLogoSize) {
-    const mmPerPx = 25.4 / 96;
-    const logoWidth = headerLogoSize.width * mmPerPx;
-    const logoHeight = headerLogoSize.height * mmPerPx;
-    const logoX = pageWidth - margin - logoWidth;
-    const logoY = 6;
-    doc.addImage(headerLogoDataUrl, 'PNG', logoX, logoY, logoWidth, logoHeight);
-  }
+  drawHeaderLogo();
   // centerText(report.projectName || 'Unnamed Project', 28, 14, 'normal');
   
   doc.setTextColor(0, 0, 0);
@@ -243,8 +249,11 @@ export const generatePDF = async (report: SiteReport) => {
     doc.setPage(i);
     doc.setFontSize(8);
     doc.setTextColor(150, 150, 150);
+    if (i > 1) {
+      drawHeaderLogo(0.5);
+    }
     doc.text(`Seite ${i} von ${pageCount}`, pageWidth - 30, pageHeight - 10);
-    doc.text(`Bericht erstellt: ${new Date().toLocaleString()}`, margin, pageHeight - 10);
+    doc.text(`Bericht erstellt: ${new Date().toLocaleDateString('de-AT', { day: '2-digit', month: '2-digit', year: 'numeric' })} ${new Date().toLocaleTimeString('de-AT', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })}`, margin, pageHeight - 10);
   }
 
   const fileName = `${report.visitDate}_Begehung_${report.projectName.replace(/\s+/g, '_') || 'Draft'}.pdf`;
