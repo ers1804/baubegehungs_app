@@ -192,12 +192,16 @@ export const generatePDF = async (report: SiteReport) => {
       const severityColors: Record<string, [number, number, number]> = {
         'Gruen': [34, 197, 94], 'Rot': [239, 68, 68]
       };
+      const severityTrans: Record<string, string> = {
+        'Gruen': 'Grün', 'Rot': 'Rot'
+      };
       const color = severityColors[dev.severity] || [100, 100, 100];
       doc.setFillColor(color[0], color[1], color[2]);
       doc.rect(margin, currentY, 180, 8, 'F');
       doc.setTextColor(255, 255, 255);
       doc.setFontSize(10);
-      doc.text(`Punkt ${i + 1} - ${dev.severity.toUpperCase()}`, margin + 5, currentY + 5.5);
+      doc.setFont('helvetica', 'normal');
+      doc.text(`Punkt ${i + 1} - ${severityTrans[dev.severity].toUpperCase()}`, margin + 5, currentY + 5.5);
       doc.setTextColor(0, 0, 0);
       currentY += 12;
 
