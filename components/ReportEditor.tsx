@@ -121,7 +121,7 @@ const ReportEditor: React.FC<ReportEditorProps> = ({ report, customModules, onUp
           id: crypto.randomUUID(),
           photoUrl: compressedBase64,
           textModule: '',
-          severity: 'Gruen',
+          severity: 'Grün',
           actionStatus: 'laufend',
           responsible: ''
         };
@@ -136,7 +136,7 @@ const ReportEditor: React.FC<ReportEditorProps> = ({ report, customModules, onUp
     const newDeviation: Deviation = {
       id: crypto.randomUUID(),
       textModule: '',
-      severity: 'Gruen',
+      severity: 'Grün',
       actionStatus: 'laufend',
       responsible: ''
     };
@@ -344,7 +344,7 @@ const ReportEditor: React.FC<ReportEditorProps> = ({ report, customModules, onUp
                           <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Schweregrad</label>
                           <select 
                             className={`w-full text-xs font-bold px-3 py-1.5 rounded-lg border border-slate-200 focus:ring-2 ${
-                              deviation.severity === 'Rot' ? 'bg-red-50 text-red-700' : deviation.severity === 'Gruen' ? 'bg-green-50 text-green-700' : 'bg-green-50 text-green-700'
+                              deviation.severity === 'Rot' ? 'bg-red-50 text-red-700' : deviation.severity === 'Grün' ? 'bg-green-50 text-green-700' : 'bg-green-50 text-green-700'
                             }`}
                             value={deviation.severity}
                             onChange={(e) => onUpdateDeviation(deviation.id, { severity: e.target.value as any })}
