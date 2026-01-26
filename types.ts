@@ -13,7 +13,7 @@ export interface Deviation {
   photoUrl?: string;
   textModule: string;
   location?: string;
-  severity: 'Rot' | 'Grün';
+  severity: 'Rot' | 'Gruen';
   responsible?: string;
   actionStatus?: 'laufend' | 'sofort';
 }
