@@ -303,25 +303,25 @@ const ReportEditor: React.FC<ReportEditorProps> = ({ report, customModules, onUp
                 </div>
               </div>
 
-              <div className="space-y-8">
+              <div className="flex flex-col gap-8">
                 {report.deviations.map((deviation, idx) => (
                   <div 
                     key={deviation.id} 
-                    className={`grid grid-cols-1 md:grid-cols-12 gap-6 p-4 border border-slate-200 rounded-2xl relative bg-white shadow-sm transition-all overflow-visible ${openDropdownId === deviation.id ? 'ring-2 ring-blue-500/20 z-[100]' : 'z-10'}`}
+                    className={`grid grid-cols-1 md:grid-cols-12 gap-6 p-4 border border-slate-200 rounded-2xl relative bg-white shadow-sm transition-all z-0 ${openDropdownId === deviation.id ? 'ring-2 ring-blue-500/20' : ''}`}
                   >
                     <div className="absolute top-0 left-0 bg-slate-100 text-slate-500 text-[10px] font-bold px-2 py-1 rounded-br-lg uppercase z-10">Item #{idx + 1}</div>
                     <button onClick={() => removeItem('deviations', deviation.id)} className="absolute top-2 right-2 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center shadow-lg z-20 hover:bg-red-600 transition"><i className="fas fa-times"></i></button>
 
-                    <div className="md:col-span-4 mt-4 md:mt-0 self-start">
+                    <div className="md:col-span-4 mt-4 md:mt-0">
                       {deviation.photoUrl ? (
-                        <div className="space-y-2">
-                          <div className="w-full h-48 overflow-hidden rounded-xl border border-slate-100 bg-gray-50 flex items-center justify-center">
+                        <div className="space-y-2 flex flex-col">
+                          <div className="w-full h-48 overflow-hidden rounded-xl border border-slate-100 bg-gray-50 flex-shrink-0">
                             <img src={deviation.photoUrl} alt={`Item ${idx + 1}`} className="w-full h-full object-cover" />
                           </div>
                           <button 
                             onClick={() => handleAiAnalyze(deviation)}
                             disabled={analyzingIds.has(deviation.id)}
-                            className="w-full py-2 bg-blue-50 text-blue-600 rounded-lg text-xs font-bold hover:bg-blue-100 transition disabled:opacity-50 flex items-center justify-center gap-2 border border-blue-100"
+                            className="w-full py-2 bg-blue-50 text-blue-600 rounded-lg text-xs font-bold hover:bg-blue-100 transition disabled:opacity-50 flex items-center justify-center gap-2 border border-blue-100 flex-shrink-0"
                           >
                             {analyzingIds.has(deviation.id) ? (
                               <><i className="fas fa-circle-notch fa-spin"></i> Analyzing...</>
@@ -331,7 +331,7 @@ const ReportEditor: React.FC<ReportEditorProps> = ({ report, customModules, onUp
                           </button>
                         </div>
                       ) : (
-                        <div className="w-full h-48 bg-slate-50 rounded-xl border border-dashed border-slate-200 flex flex-col items-center justify-center text-slate-400">
+                        <div className="w-full h-48 bg-slate-50 rounded-xl border border-dashed border-slate-200 flex flex-col items-center justify-center text-slate-400 flex-shrink-0">
                           <i className="fas fa-align-left text-3xl mb-2 text-slate-300"></i>
                           <span className="text-xs font-medium">Beobachtung ohne Bild</span>
                         </div>
