@@ -267,14 +267,14 @@ const ReportEditor: React.FC<ReportEditorProps> = ({ report, customModules, onUp
                           checked={person.isPresent}
                           onChange={(e) => { const nl = [...report.distributionList]; nl[idx].isPresent = e.target.checked; updateField('distributionList', nl); }}
                         />
-                        <span className={`text-xs font-bold uppercase ${person.isPresent ? 'text-blue-600' : 'text-gray-400'}`}>Present at visit</span>
+                        <span className={`text-xs font-bold uppercase ${person.isPresent ? 'text-blue-600' : 'text-gray-400'}`}>Anwesend</span>
                       </label>
                       <button onClick={() => removeItem('distributionList', person.id)} className="p-2 text-red-400 hover:text-red-600 transition"><i className="fas fa-trash-alt"></i></button>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
                       <input placeholder="Name" className="p-2 bg-white text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" value={person.name} onChange={(e) => { const nl = [...report.distributionList]; nl[idx].name = e.target.value; updateField('distributionList', nl); }} />
-                      <input placeholder="Role" className="p-2 bg-white text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" value={person.role} onChange={(e) => { const nl = [...report.distributionList]; nl[idx].role = e.target.value; updateField('distributionList', nl); }} />
-                      <input placeholder="Company" className="p-2 bg-white text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" value={person.company} onChange={(e) => { const nl = [...report.distributionList]; nl[idx].company = e.target.value; updateField('distributionList', nl); }} />
+                      <input placeholder="Funktion" className="p-2 bg-white text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" value={person.role} onChange={(e) => { const nl = [...report.distributionList]; nl[idx].role = e.target.value; updateField('distributionList', nl); }} />
+                      <input placeholder="Firma" className="p-2 bg-white text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" value={person.company} onChange={(e) => { const nl = [...report.distributionList]; nl[idx].company = e.target.value; updateField('distributionList', nl); }} />
                       <input placeholder="Email" className="p-2 bg-white text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" value={person.email} onChange={(e) => { const nl = [...report.distributionList]; nl[idx].email = e.target.value; updateField('distributionList', nl); }} />
                     </div>
                   </div>
